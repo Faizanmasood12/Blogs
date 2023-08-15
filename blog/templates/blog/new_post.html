@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Post</title>
+</head>
+<body>
+
+</body>
+</html>
+{% extends 'blog/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+
+<h1 class="display-3"> Add New Post</h1>
+<h2 class="display-9"><a href="{% url 'blog:posts' blog.id%}">{{blog}}</a></h2>
+
+{% endblock page_header %}
+
+{% block content %}
+    <form action="{% url 'blog:new_post' blog.id %}" method="post" >
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button type='submit' content='Add Post' %}
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogs</title>
+</head>
+<body>
+
+</body>
+</html>
+{% extends 'blog/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+
+<h1 class="display-3">Blogs</h1>
+<h2 class="display-9"><a href="{% url 'blog:new_blog' %}">Add new blog</a></h2>
+
+{% endblock page_header %}
+
+{% block content %}
+
+<ul class="list-group border-bottom bp-2 mb-4">
+    {% for blog in blogs %}
+    <li class="list-group-item border-0">
+        <a href="{% url 'blog:posts' blog.id %}">{{blog}}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home page</title>
+</head>
+<body>
+</body>
+</html>
+
+{% extends 'blog/base.html' %}
+{% load django_bootstrap5 %}
+{% block page_header %}
+
+<h1 class="display-4"> Posts </h1>
+<ul>
+  {% for post in posts %}
+
+
+  <div class="card mb-2">
+    <h4 class="card-header">
+    {{post.publish|date:"M d, Y H:i"}}
+
+    </h4>
+
+    <div class="card-body">
+      {{post.text}}
+
+    </div>
+      <div class=" ms-auto ">
+        <small class="card-footer ">Posted by {{post.post.owner}}</small>
+      </div>
+        <h4 class="card-footer ">
+      {% if user.is_authenticated %}
+
+      {% else %}
+      <a href="{% url 'accounts:login'%}">Log in &raquo;</a>
+      {% endif %}
+    </h4>
+  </div>
+
+
+  {% endfor %}
+
+</ul>
+{% endblock page_header %}

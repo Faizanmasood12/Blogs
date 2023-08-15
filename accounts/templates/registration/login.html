@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+</body>
+</html>
+{% extends 'blog/base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="card mb-2">
+  <h1 class="card-header display-3 ">
+    Log in
+  </h1>
+  <div class="card-body">
+    <form action="{% url 'accounts:login' %}" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% bootstrap_button type='submit' content='Log in' %}
+      <button class="btn btn-outline-secondary btn-sm "> <a href="{% url 'accounts:register' %}">Create Account</a>
+      </button>
+
+    </form>
+</div>
+</div>
+
+{% endblock content %}
